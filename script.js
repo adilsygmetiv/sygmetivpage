@@ -9,7 +9,7 @@ let isServiceOpen = false;
 const menuService = document.querySelector(".menu-service");
 const leftText = document.querySelector(".menuLeft");
 
-menuService.addEventListener("click", () => {
+menuService.addEventListener("mouseover", () => {
   isServiceOpen
     ? leftText.style.opacity= 0
     : leftText.style.opacity= 1,  

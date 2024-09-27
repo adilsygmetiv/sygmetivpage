@@ -16,13 +16,24 @@
 }
 
 body,
-html, h1, h2, h3, h4, h5, h6, p {
+html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--primary-font);
   background-color: black;
   color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
 }
 
 /* general section  */
@@ -84,11 +95,11 @@ nav {
   background-color: black;
   padding: 3rem;
   margin-top: 5rem;
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
   text-decoration: none;
   color: inherit;
@@ -96,14 +107,38 @@ nav {
   transition: all 0.5s ease-in-out;
 }
 
-.menu a, .menu h3 {
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.menu-service i {
+  font-size: 1rem;
+}
+
+.menuLeft {
+  display: none;
+}
+
+.menu-service {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menu a,
+.menu h3 {
   color: white;
   text-decoration: none;
   font-size: 5vw;
   transition: color 0.3s ease-in-out;
 }
 
-.menu .left p{
+.menu .left p {
   font-size: 2rem;
 }
 
@@ -119,6 +154,10 @@ nav {
   width: 100%;
   object-fit: cover;
   position: relative;
+}
+
+.hero-title {
+  text-align: center;
 }
 
 .sub-title {
@@ -166,9 +205,14 @@ nav {
   display: flex;
 }
 
+.about-title {
+  margin-top: 0.5rem;
+}
+
 .about-wrapper img {
   width: 20%;
   object-fit: contain;
+  display: none;
 }
 
 /* service section  */
@@ -184,17 +228,22 @@ nav {
   border-radius: 1.5rem;
 }
 
+.remarkable-text {
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+}
+
 .service img {
   width: 100%;
   object-fit: cover;
 }
 .service-title {
   font-weight: 300;
-  margin-bottom: 5px;
+  margin: 1rem 0;
 }
 
 .service-middle-title {
-  margin: 0;
+  margin: 0.5rem 0;
   color: #86868b;
 }
 .service-sub-title {
@@ -275,10 +324,16 @@ nav {
 }
 .connect-top {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .connect-text {
   color: var(--secondary-text);
+  width: 70%;
 }
 
 .address-text {
@@ -288,7 +343,7 @@ nav {
 .connect-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1rem;
   margin-top: 3rem;
 }
 
@@ -297,6 +352,13 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.connect-card i {
+  font-size: 2rem;
 }
 
 .connection-title {
@@ -311,6 +373,10 @@ nav {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
+}
+
+.logo-section{
+  margin-bottom: 1rem;
 }
 
 .contact-info {
@@ -462,24 +528,24 @@ nav {
   }
 
   .menu {
-    /* padding: 3rem 3rem; */
-    /* margin-right: 10rem; */
     justify-content: space-around;
   }
 
   .menuLeft {
     opacity: 0;
-  }
-
-  .menu .right{
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-end; */
+    font-size: 2rem;
+    gap: 2rem;
+  }
+
+  .menu .right {
+    display: flex;
+    flex-direction: column;
     align-items: flex-end;
   }
 
   /* hero section  */
-
   .hero {
     height: 100vh;
     display: flex;
