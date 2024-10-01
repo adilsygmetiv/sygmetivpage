@@ -127,11 +127,13 @@ body,html{
 .right-wrappper{
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
 }
 
 .gray-text-wrapper {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 @media (min-width: 550px) and (max-width: 768px) {
@@ -175,5 +177,12 @@ body,html{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+  }
+
+  @media (min-width: 1200px) and (max-width: 2000px) {
+    .right-wrappper{
+      flex-direction: row;
     }
   }
