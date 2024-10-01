@@ -161,6 +161,32 @@ nav {
   text-align: center;
 }
 
+.hero-title span{
+  background: linear-gradient(135deg,#FB79A6,#DD6CB8,#AD5DEB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 8s ease-in-out infinite;
+}
+
+.gradient {
+  background: linear-gradient(135deg,#FB79A6,#DD6CB8,#AD5DEB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 8s ease-in-out infinite;
+}
+
+/* @gradient{
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
+} */
+
 .sub-title {
   color: #86868b;
   font-size: 1vw;
