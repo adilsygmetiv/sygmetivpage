@@ -299,7 +299,8 @@ nav {
   display: flex;
   gap: 10px;
   width: 100%;
-  overflow-x: scroll;
+  overflow: hidden;
+  
 }
 
 .carousel::-webkit-scrollbar {
@@ -314,6 +315,7 @@ nav {
   background-color: rgba(217, 217, 217, 0.09);
   padding: 1rem 0.5rem;
   /* width: 40%; */
+  z-index: -99;
 }
 
 .main-card {
@@ -323,9 +325,10 @@ nav {
   border-radius: 0.5rem;
   background-color: rgba(217, 217, 217, 0.09);
   padding: 1rem 0.5rem;
+  z-index: -99;
 }
 
-.count p {
+.port-text {
   font-weight: 300;
   font-size: 8vw;
 }
@@ -721,9 +724,15 @@ nav {
   .carousel {
     max-height: 576px;
   }
-
-  .count p {
+  
+  .port-text {
     font-size: 2vw;
+  }
+  
+  .port-sub-text{
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    color: var(--secondary-text);
   }
 
   .main-card {

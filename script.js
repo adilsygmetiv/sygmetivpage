@@ -8,49 +8,88 @@ let isHandbergerOpen = false;
 let isServiceOpen = false;
 const menuService = document.querySelector(".menu-service");
 const leftText = document.querySelector(".menuLeft");
-const box = document.querySelectorAll('.box');
+const box = document.querySelectorAll(".box");
 const boxes = [
   {
-    title:"ERP Solution",
-    subTitle:"The Hero of Business Transformation ",
-    description: "Our ERP solution is the cornerstone of our service offerings, celebrated for its transformative impact on enterprises and MSMEs alike."
+    title: "ERP Solution",
+    subTitle: "The Hero of Business Transformation ",
+    description:
+      "Our ERP solution is the cornerstone of our service offerings, celebrated for its transformative impact on enterprises and MSMEs alike.",
   },
   {
-    title:"Business Application ",
-    subTitle:"Redefining Future of Business  ",
-    description: "Our business applications are designed to address a wide range of challenges with customized solutions. By streamlining processes and adapting to evolving market trends,"
+    title: "Business Application ",
+    subTitle: "Redefining Future of Business  ",
+    description:
+      "Our business applications are designed to address a wide range of challenges with customized solutions. By streamlining processes and adapting to evolving market trends,",
   },
   {
-    title:"Web Development",
-    subTitle:"Crafting experiences that Wow..! ",
-    description: "Enthusiastic web team create visually stunning, user-friendly websites that position your brand. Our skilled developers are dedicated to meeting your unique needs and delivering exceptional results."
+    title: "Web Development",
+    subTitle: "Crafting experiences that Wow..! ",
+    description:
+      "Enthusiastic web team create visually stunning, user-friendly websites that position your brand. Our skilled developers are dedicated to meeting your unique needs and delivering exceptional results.",
   },
   {
-    title:"Digital Marketing",
-    subTitle:"Get Found, Get Leads, Get Sales",
-    description: "Our enhanced digital marketing strategies are designed to achieve your brand’s marketing objectives with suite of SEO, Social media marketing, Google Ads, content marketing, and email marketing."
+    title: "Digital Marketing",
+    subTitle: "Get Found, Get Leads, Get Sales",
+    description:
+      "Our enhanced digital marketing strategies are designed to achieve your brand’s marketing objectives with suite of SEO, Social media marketing, Google Ads, content marketing, and email marketing.",
   },
   {
-    title:"UI/UX Designing",
-    subTitle:"Designing for Impact ",
-    description: "Our UI/UX designers create intuitive interfaces that enhance user experience, improve customer satisfaction, and drive business growth."
+    title: "UI/UX Designing",
+    subTitle: "Designing for Impact ",
+    description:
+      "Our UI/UX designers create intuitive interfaces that enhance user experience, improve customer satisfaction, and drive business growth.",
   },
   {
-    title:"Branding",
-    subTitle:"Building Your Brand Identity",
-    description: "We help you develop a strong, memorable brand identity that resonates with your target audience and sets you apart from competitors."
+    title: "Branding",
+    subTitle: "Building Your Brand Identity",
+    description:
+      "We help you develop a strong, memorable brand identity that resonates with your target audience and sets you apart from competitors.",
   },
   {
-    title:"WhatsApp API",
-    subTitle:"Engage Customers on WhatsApp",
-    description: " From automated chatbots to personalized campaigns, we provide the tools and expertise to maximize the potential of WhatsApp for your business."
+    title: "WhatsApp API",
+    subTitle: "Engage Customers on WhatsApp",
+    description:
+      " From automated chatbots to personalized campaigns, we provide the tools and expertise to maximize the potential of WhatsApp for your business.",
   },
   {
-    title:"Ecommerce Solution",
-    subTitle:"Power Your Online Store ",
-    description: "Our ecommerce solutions provide a robust platform for selling products and services online, offering features like secure payments, inventory management, and marketing tools."
+    title: "Ecommerce Solution",
+    subTitle: "Power Your Online Store ",
+    description:
+      "Our ecommerce solutions provide a robust platform for selling products and services online, offering features like secure payments, inventory management, and marketing tools.",
   },
-]
+];
+
+const portData = [
+  {
+    subTitle:
+      "Sygmetiv successfully implemented Odoo ERP for Gulf Crafts, streamlining their operations and enhancing efficiency. This comprehensive solution integrated various business processes,",
+  },
+  {
+    subTitle:
+      "Sygmetiv successfully implemented Odoo ERP for Gulf Crafts, streamlining their operations and enhancing efficiency. This comprehensive solution integrated various business processes,",
+  },
+  {
+    subTitle:
+      "Sygmetiv successfully implemented Odoo ERP for Gulf Crafts, streamlining their operations and enhancing efficiency. This comprehensive solution integrated various business processes,",
+  },
+  {
+    subTitle:
+      "Sygmetiv successfully implemented Odoo ERP for Gulf Crafts, streamlining their operations and enhancing efficiency. This comprehensive solution integrated various business processes,",
+  },
+  {
+    subTitle:
+      "Sygmetiv successfully implemented Odoo ERP for Gulf Crafts, streamlining their operations and enhancing efficiency. This comprehensive solution integrated various business processes,",
+  },
+  {
+    subTitle:
+      "Sygmetiv successfully implemented Odoo ERP for Gulf Crafts, streamlining their operations and enhancing efficiency. This comprehensive solution integrated various business processes,",
+  },
+  {
+    subTitle:
+      "Sygmetiv successfully implemented Odoo ERP for Gulf Crafts, streamlining their operations and enhancing efficiency. This comprehensive solution integrated various business processes,",
+  },
+];
 
 if (window.innerWidth > 1200) {
   const boxArr = document.querySelectorAll(".row2 > div"); // Selecting all boxes inside row2
@@ -76,23 +115,21 @@ if (window.innerWidth > 1200) {
           box.style.transform = `translateY(0px)`;
         });
         base = 0; // Reset the base value
-        console.log("Reset all boxes to original position");
       }, 2000); // Wait for 1 second before resetting
     }
   };
 
   box.forEach((box) => {
-    box.addEventListener("mouseenter", (box)=>{
-      boxes.forEach((boxes)=>{
-        if(boxes.title === box.target.innerText){
-          document.querySelector('.half-box-title').innerText = boxes.title;
-          document.querySelector('.box-sub-title').innerText = boxes.subTitle;
-          document.querySelector('.description').innerText = boxes.description;
-        } 
-      })
-      console.log(box.target.innerText);
+    box.addEventListener("mouseenter", (box) => {
+      boxes.forEach((boxes) => {
+        if (boxes.title === box.target.innerText) {
+          document.querySelector(".half-box-title").innerText = boxes.title;
+          document.querySelector(".box-sub-title").innerText = boxes.subTitle;
+          document.querySelector(".description").innerText = boxes.description;
+        }
+      });
     });
-  })
+  });
 
   const startScrolling = () => {
     scrollInterval = setInterval(scrollBoxes, 2000);
@@ -132,7 +169,6 @@ handberger.addEventListener(
 const setMaxWidth = () => {
   if (window.innerWidth < 768) {
     const screenSize = window.innerWidth;
-    console.log(screenSize);
     carousel.style.maxWidth = `${screenSize}px`;
     // console.log(`${screenSize}px`)
     mainCard.style.minWidth = `${(screenSize * 60) / 100}px`;
@@ -141,6 +177,76 @@ const setMaxWidth = () => {
     );
   }
 };
+
+// Function to loop through carousel elements, moving and resizing them in a continuous cycle
+const startCarouselLoop = () => {
+  const portfolio = document.querySelectorAll(".carousel > div"); // Select all divs in the carousel
+  const subTextElements = document.querySelectorAll(".port-sub-text"); // Select all port-sub-text elements
+  const carousel = document.querySelector(".carousel"); // Select the entire carousel
+
+  let currentIndex = 0; // Track the current index of the first element
+
+  const animateCarousel = () => {
+    if (portfolio.length > 0) {
+      const firstElement = portfolio[currentIndex]; // Get the current first element
+      const firstSubText = subTextElements[currentIndex]; // Get the corresponding sub-text
+
+      // Store the width of the first (extended) div
+      const firstElementWidth = firstElement.offsetWidth;
+
+      // Set the sub-text for the first element from portData array
+      firstSubText.innerText = portData[currentIndex].subTitle;
+
+      setTimeout(() => {
+
+        // Move the entire carousel by the width of the first element
+        carousel.style.transition = "transform 1s ease"; // Smooth transition for the entire carousel
+        carousel.style.transform = `translateX(-${firstElementWidth}px)`; // Move the entire carousel to the left
+
+        const nextIndex = (currentIndex + 1) % portfolio.length; // Get the next element in line
+        const secondElement = portfolio[nextIndex]; // Get the next element
+        const secondSubText = subTextElements[nextIndex]; // Get the corresponding sub-text element
+
+        // Update the text for the second element from portData
+        secondSubText.innerText = portData[nextIndex].subTitle;
+
+        // Resize the second element to match the first element's width
+        secondElement.style.transition = "width 1s ease"; // Smooth width transition
+        secondElement.style.minWidth = `${firstElementWidth}px`;
+
+        // Hide the first element after the transition
+        setTimeout(() => {
+          firstElement.style.transition = "none"; // Disable transitions for hiding
+          firstElement.style.transform = `translateX(-${firstElementWidth}px)`; // Move it out of sight
+          firstElement.style.display = "none"; // Now hide it after the move is done
+
+          // Reset the carousel transform to start from the new first element
+          carousel.style.transition = "none"; // Disable transition to avoid visual jump
+          carousel.style.transform = `translateX(0)`; // Reset carousel position to the new first element
+
+          // Move the current first element to the end of the carousel
+          carousel.appendChild(firstElement); // Move the first element to the end
+
+          // Update currentIndex to the next element
+          currentIndex = nextIndex;
+
+          // Start the next iteration
+          setTimeout(animateCarousel, 1500); // Delay before the next loop iteration
+
+        }, 1000); // Timeout matches the transition duration of the carousel movement
+
+      }, 1500); // Delay before the first element starts moving
+
+    }
+  };
+
+  animateCarousel(); // Start the carousel loop
+};
+
+// Call the function to start the continuous carousel loop
+startCarouselLoop();
+
+
 
 function toggleDisplayClass() {
   const tabViewportWidth = 768; // Define your tab viewport width threshold
