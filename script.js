@@ -178,29 +178,47 @@ const setMaxWidth = () => {
   }
 };
 
-// Function to loop through carousel elements, moving and resizing them in a continuous cycle
 const startCarouselLoop = () => {
   const portfolio = document.querySelectorAll(".carousel > div"); // Select all divs in the carousel
   const subTextElements = document.querySelectorAll(".port-sub-text"); // Select all port-sub-text elements
   const carousel = document.querySelector(".carousel"); // Select the entire carousel
 
   let currentIndex = 0; // Track the current index of the first element
+  let firstDivWidth, secondDivWidth; // Variables to store the initial widths
+
+  // Function to reset all elements' display and transform properties
+  const resetCarousel = () => {
+    portfolio.forEach((element) => {
+      element.style.display = "block"; // Make sure all elements are visible
+      element.style.transform = "translateX(0px)"; // Reset the transform to initial
+      element.style.minWidth = `${secondDivWidth}px`; // Resize all divs to second div's width
+    });
+    portfolio[0].style.minWidth = `${firstDivWidth}px`; // Give the first div the original width
+    carousel.style.transition = "none"; // Remove any transition effect after reset
+    carousel.style.transform = "translateX(0px)"; // Reset carousel position
+  };
 
   const animateCarousel = () => {
     if (portfolio.length > 0) {
       const firstElement = portfolio[currentIndex]; // Get the current first element
       const firstSubText = subTextElements[currentIndex]; // Get the corresponding sub-text
 
-      // Store the width of the first (extended) div
-      const firstElementWidth = firstElement.offsetWidth;
+      // Store the width of the first (extended) div at the start of the loop
+      if (currentIndex === 0 && !firstDivWidth) {
+        firstDivWidth = firstElement.offsetWidth; // Store first div's width once
+        const secondElement = portfolio[(currentIndex + 1) % portfolio.length]; // Get the second element
+        secondDivWidth = secondElement.offsetWidth; // Store second div's width once
+      }
 
       // Set the sub-text for the first element from portData array
       firstSubText.innerText = portData[currentIndex].subTitle;
 
-      setTimeout(() => {
+      // Store the width of the first element
+      const firstElementWidth = firstElement.offsetWidth;
 
+      setTimeout(() => {
         // Move the entire carousel by the width of the first element
-        carousel.style.transition = "transform 1s ease"; // Smooth transition for the entire carousel
+        carousel.style.transition = "transform 0.8s ease-in-out"; // Smoother transition for the entire carousel
         carousel.style.transform = `translateX(-${firstElementWidth}px)`; // Move the entire carousel to the left
 
         const nextIndex = (currentIndex + 1) % portfolio.length; // Get the next element in line
@@ -211,7 +229,7 @@ const startCarouselLoop = () => {
         secondSubText.innerText = portData[nextIndex].subTitle;
 
         // Resize the second element to match the first element's width
-        secondElement.style.transition = "width 1s ease"; // Smooth width transition
+        secondElement.style.transition = "width 0.8s ease-in-out"; // Smoother width transition
         secondElement.style.minWidth = `${firstElementWidth}px`;
 
         // Hide the first element after the transition
@@ -230,13 +248,25 @@ const startCarouselLoop = () => {
           // Update currentIndex to the next element
           currentIndex = nextIndex;
 
-          // Start the next iteration
-          setTimeout(animateCarousel, 1500); // Delay before the next loop iteration
+          // Check if we are at the end of the carousel
+          if (currentIndex === 0) {
+            // Before restarting, resize all divs
+            portfolio.forEach((element) => {
+              element.style.minWidth = `${secondDivWidth}px`; // Resize all divs to the second div's stored width
+            });
+            portfolio[0].style.minWidth = `${firstDivWidth}px`; // Resize the first div to its original width
 
-        }, 1000); // Timeout matches the transition duration of the carousel movement
+            // Reset the carousel and all elements before restarting
+            resetCarousel(); // Bring all elements back to the default state
+            setTimeout(animateCarousel, 1000); // Restart after resetting
+          } else {
+            // Continue with the next iteration
+            setTimeout(animateCarousel, 800); // Shorter delay for a smoother continuous loop
+          }
 
-      }, 1500); // Delay before the first element starts moving
+        }, 800); // Timeout matches the transition duration of the carousel movement
 
+      }, 1000); // Delay before the first element starts moving
     }
   };
 
@@ -245,8 +275,6 @@ const startCarouselLoop = () => {
 
 // Call the function to start the continuous carousel loop
 startCarouselLoop();
-
-
 
 function toggleDisplayClass() {
   const tabViewportWidth = 768; // Define your tab viewport width threshold

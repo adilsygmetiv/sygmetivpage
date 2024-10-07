@@ -295,6 +295,10 @@ nav {
 
 /* portfolio section  */
 
+.portfolio{
+  overflow: hidden;
+}
+
 .carousel {
   display: flex;
   gap: 10px;
@@ -718,6 +722,7 @@ nav {
 
   /* portfollio section  */
   .porfolio {
+    overflow: hidden;
     margin: 8rem 0;
   }
 
