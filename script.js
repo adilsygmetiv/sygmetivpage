@@ -186,6 +186,24 @@ const startCarouselLoop = () => {
   let currentIndex = 0; // Track the current index of the first element
   let firstDivWidth, secondDivWidth; // Variables to store the initial widths
 
+  // Function to check if the viewport size is mobile
+  const isMobile = () => window.innerWidth <= 768; // Define a threshold for mobile size (e.g., 768px)
+
+  // Function to hide subTextElements on mobile screens
+  const handleSubTextVisibility = () => {
+    if (isMobile()) {
+      // Hide subTextElements on mobile
+      subTextElements.forEach((element) => {
+        element.style.display = "none";
+      });
+    } else {
+      // Show subTextElements on larger screens
+      subTextElements.forEach((element) => {
+        element.style.display = "block";
+      });
+    }
+  };
+
   // Function to reset all elements' display and transform properties
   const resetCarousel = () => {
     portfolio.forEach((element) => {
@@ -200,6 +218,8 @@ const startCarouselLoop = () => {
   };
 
   const animateCarousel = () => {
+    handleSubTextVisibility(); // Check and apply subText visibility based on viewport size
+
     if (portfolio.length > 0) {
       const firstElement = portfolio[currentIndex]; // Get the current first element
       const firstSubText = subTextElements[currentIndex]; // Get the corresponding sub-text
@@ -211,8 +231,10 @@ const startCarouselLoop = () => {
         secondDivWidth = secondElement.offsetWidth; // Store second div's width once
       }
 
-      // Set the sub-text for the first element from portData array
-      firstSubText.innerText = portData[currentIndex].subTitle;
+      // Set the sub-text for the first element from portData array (only if not on mobile)
+      if (!isMobile()) {
+        firstSubText.innerText = portData[currentIndex].subTitle;
+      }
 
       // Store the width of the first element
       const firstElementWidth = firstElement.offsetWidth;
@@ -226,8 +248,10 @@ const startCarouselLoop = () => {
         const secondElement = portfolio[nextIndex]; // Get the next element
         const secondSubText = subTextElements[nextIndex]; // Get the corresponding sub-text element
 
-        // Update the text for the second element from portData
-        secondSubText.innerText = portData[nextIndex].subTitle;
+        // Update the text for the second element from portData (only if not on mobile)
+        if (!isMobile()) {
+          secondSubText.innerText = portData[nextIndex].subTitle;
+        }
 
         // Apply smooth expansion animation when resizing the second element
         secondElement.style.visibility = "visible"; // Ensure it's visible before animation
@@ -272,6 +296,9 @@ const startCarouselLoop = () => {
   };
 
   animateCarousel(); // Start the carousel loop
+
+  // Add resize event listener to handle viewport changes dynamically
+  window.addEventListener('resize', handleSubTextVisibility);
 };
 
 // Call the function to start the continuous carousel loop
