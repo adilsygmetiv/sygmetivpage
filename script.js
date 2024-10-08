@@ -204,16 +204,18 @@ const startCarouselLoop = () => {
     portfolio.forEach((element, index) => {
       element.style.visibility = "visible"; // Make sure all elements are visible
       element.style.transform = "translateX(0px)"; // Reset the transform to initial
-      element.style.transition = "width 0.8s ease-in-out"; // Ensure width transition
+      element.style.transition = "min-width 0.8s ease-in-out"; // Ensure width transition
       
       // Set min-width to the stored second div's width for all elements
       element.style.minWidth = `${secondDivWidth}px`; 
-      element.style.width = `${secondDivWidth}px`; // Resize all divs to second div's width
-      
-      // Set the first div's max-width to firstDivWidth
+
+      // If it's the first div, use the firstDivWidth
       if (index === 0) {
-        element.style.width = `${firstDivWidth}px`;
-        element.style.maxWidth = `${firstDivWidth}px`;
+        element.style.minWidth = `${firstDivWidth}px`;
+        element.style.maxWidth = `${firstDivWidth}px`; // Ensure max-width is also set to avoid shrinking
+      } else {
+        // Reset others to secondDivWidth
+        element.style.maxWidth = `${secondDivWidth}px`;
       }
     });
 
@@ -283,10 +285,11 @@ const startCarouselLoop = () => {
             // Before restarting, recalculate all widths to avoid overlap between the first and last elements
             portfolio.forEach((element) => {
               element.style.minWidth = `${secondDivWidth}px`; // Resize all divs to the second div's stored min-width
-              element.style.width = `${secondDivWidth}px`; // Also ensure the width matches
+              element.style.maxWidth = `${secondDivWidth}px`; // Ensure max-width as well
             });
 
-            portfolio[0].style.width = `${firstDivWidth}px`; // Resize the first div to its original width
+            portfolio[0].style.minWidth = `${firstDivWidth}px`; // Resize the first div to its original width
+            portfolio[0].style.maxWidth = `${firstDivWidth}px`; // Also set max-width to maintain consistency
 
             resetCarousel(); // Bring all elements back to the default state
             setTimeout(animateCarousel, 1000); // Restart after resetting
@@ -308,6 +311,7 @@ const startCarouselLoop = () => {
 
 // Call the function to start the continuous carousel loop
 startCarouselLoop();
+
 
 
 function toggleDisplayClass() {
