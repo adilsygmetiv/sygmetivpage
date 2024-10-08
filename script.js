@@ -104,8 +104,6 @@ if (window.innerWidth > 1200) {
       box.style.transform = `translateY(-${base}px)`; // Apply the transformation
     });
 
-    console.log(`All boxes moved by -${base}px`);
-
     // If box4 (index 3) is at the top, reset everything
     if (base >= scrollStep * 3) {
       // 3 times scrollStep means box4 is on top
@@ -151,14 +149,12 @@ if (window.innerWidth > 1200) {
 
 menuService.addEventListener("mouseover", () => {
   isServiceOpen ? (leftText.style.opacity = 0) : (leftText.style.opacity = 1),
-    console.log(isServiceOpen);
-  isServiceOpen = !isServiceOpen;
+    (isServiceOpen = !isServiceOpen);
 });
 
 handberger.addEventListener(
   "click",
   () => (
-    console.log("clicked"),
     isHandbergerOpen
       ? menu.classList.add("display")
       : menu.classList.remove("display"),
@@ -170,7 +166,6 @@ const setMaxWidth = () => {
   if (window.innerWidth < 768) {
     const screenSize = window.innerWidth;
     carousel.style.maxWidth = `${screenSize}px`;
-    // console.log(`${screenSize}px`)
     mainCard.style.minWidth = `${(screenSize * 60) / 100}px`;
     cards.forEach(
       (card) => (card.style.minWidth = `${(screenSize * 40) / 100}px`)
@@ -206,13 +201,22 @@ const startCarouselLoop = () => {
 
   // Function to reset all elements' display and transform properties
   const resetCarousel = () => {
-    portfolio.forEach((element) => {
+    portfolio.forEach((element, index) => {
       element.style.visibility = "visible"; // Make sure all elements are visible
       element.style.transform = "translateX(0px)"; // Reset the transform to initial
-      element.style.width = `${secondDivWidth}px`; // Resize all divs to second div's width
       element.style.transition = "width 0.8s ease-in-out"; // Ensure width transition
+      
+      // Set min-width to the stored second div's width for all elements
+      element.style.minWidth = `${secondDivWidth}px`; 
+      element.style.width = `${secondDivWidth}px`; // Resize all divs to second div's width
+      
+      // Set the first div's max-width to firstDivWidth
+      if (index === 0) {
+        element.style.width = `${firstDivWidth}px`;
+        element.style.maxWidth = `${firstDivWidth}px`;
+      }
     });
-    portfolio[0].style.width = `${firstDivWidth}px`; // Give the first div the original width
+
     carousel.style.transition = "none"; // Remove any transition effect after reset
     carousel.style.transform = "translateX(0px)"; // Reset carousel position
   };
@@ -227,16 +231,17 @@ const startCarouselLoop = () => {
       // Store the width of the first (extended) div at the start of the loop
       if (currentIndex === 0 && !firstDivWidth) {
         firstDivWidth = firstElement.offsetWidth; // Store first div's width once
-        const secondElement = portfolio[(currentIndex + 1) % portfolio.length]; // Get the second element
+        const secondElement = portfolio[1]; // Get the second element
         secondDivWidth = secondElement.offsetWidth; // Store second div's width once
       }
 
       // Set the sub-text for the first element from portData array (only if not on mobile)
       if (!isMobile()) {
+        firstSubText.style.transition = "opacity 0.2s ease-in-out"; // Add a smooth transition
         firstSubText.innerText = portData[currentIndex].subTitle;
+        firstSubText.style.opacity = 1; // Ensure the sub-text is visible
       }
 
-      // Store the width of the first element
       const firstElementWidth = firstElement.offsetWidth;
 
       setTimeout(() => {
@@ -255,9 +260,9 @@ const startCarouselLoop = () => {
 
         // Apply smooth expansion animation when resizing the second element
         secondElement.style.visibility = "visible"; // Ensure it's visible before animation
-        secondElement.style.width = `${firstElementWidth}px`; // Expand width smoothly
+        secondElement.style.minWidth = `${firstDivWidth}px`; // Expand width smoothly to the first div's width
+        console.log(firstDivWidth); // Hide the first element after the transition
 
-        // Hide the first element after the transition
         setTimeout(() => {
           firstElement.style.transition = "none"; // Disable transitions for hiding
           firstElement.style.transform = `translateX(-${firstElementWidth}px)`; // Move it out of sight
@@ -275,17 +280,17 @@ const startCarouselLoop = () => {
 
           // Check if we are at the end of the carousel
           if (currentIndex === 0) {
-            // Before restarting, resize all divs
+            // Before restarting, recalculate all widths to avoid overlap between the first and last elements
             portfolio.forEach((element) => {
-              element.style.width = `${secondDivWidth}px`; // Resize all divs to the second div's stored width
+              element.style.minWidth = `${secondDivWidth}px`; // Resize all divs to the second div's stored min-width
+              element.style.width = `${secondDivWidth}px`; // Also ensure the width matches
             });
+
             portfolio[0].style.width = `${firstDivWidth}px`; // Resize the first div to its original width
 
-            // Reset the carousel and all elements before restarting
             resetCarousel(); // Bring all elements back to the default state
             setTimeout(animateCarousel, 1000); // Restart after resetting
           } else {
-            // Continue with the next iteration
             setTimeout(animateCarousel, 800); // Shorter delay for a smoother continuous loop
           }
 
@@ -298,7 +303,7 @@ const startCarouselLoop = () => {
   animateCarousel(); // Start the carousel loop
 
   // Add resize event listener to handle viewport changes dynamically
-  window.addEventListener('resize', handleSubTextVisibility);
+  window.addEventListener("resize", handleSubTextVisibility);
 };
 
 // Call the function to start the continuous carousel loop

@@ -299,6 +299,10 @@ nav {
   overflow: hidden;
 }
 
+.port-sub-text{
+  opacity: 0;
+}
+
 .carousel {
   display: flex;
   gap: 10px;
