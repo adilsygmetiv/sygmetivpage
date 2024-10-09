@@ -17,7 +17,7 @@ const boxes = [
       "Our ERP solution is the cornerstone of our service offerings, celebrated for its transformative impact on enterprises and MSMEs alike.",
   },
   {
-    title: "Business Application ",
+    title: "Business Application",
     subTitle: "Redefining Future of Business  ",
     description:
       "Our business applications are designed to address a wide range of challenges with customized solutions. By streamlining processes and adapting to evolving market trends,",
@@ -96,7 +96,6 @@ if (window.innerWidth > 1200) {
   let base = 0; // Initial translateY value
   const scrollStep = 200; // Amount to move in each step (in pixels)
   let scrollInterval;
-  
 
   const scrollBoxes = () => {
     base += scrollStep; // Add -200px to each box's current translateY
@@ -117,7 +116,6 @@ if (window.innerWidth > 1200) {
       }, 2000); // Wait for 1 second before resetting
     }
   };
-
 
   const startScrolling = () => {
     scrollInterval = setInterval(scrollBoxes, 2000);
@@ -207,9 +205,9 @@ const startCarouselLoop = () => {
       element.style.visibility = "visible"; // Make sure all elements are visible
       element.style.transform = "translateX(0px)"; // Reset the transform to initial
       element.style.transition = "min-width 0.8s ease-in-out"; // Ensure width transition
-      
+
       // Set min-width to the stored second div's width for all elements
-      element.style.minWidth = `${secondDivWidth}px`; 
+      element.style.minWidth = `${secondDivWidth}px`;
 
       // If it's the first div, use the firstDivWidth
       if (index === 0) {
@@ -298,9 +296,7 @@ const startCarouselLoop = () => {
           } else {
             setTimeout(animateCarousel, 800); // Shorter delay for a smoother continuous loop
           }
-
         }, 800); // Timeout matches the transition duration of the carousel movement
-
       }, 1000); // Delay before the first element starts moving
     }
   };
@@ -313,8 +309,6 @@ const startCarouselLoop = () => {
 
 // Call the function to start the continuous carousel loop
 startCarouselLoop();
-
-
 
 function toggleDisplayClass() {
   const tabViewportWidth = 768; // Define your tab viewport width threshold

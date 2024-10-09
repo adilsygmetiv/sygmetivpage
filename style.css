@@ -179,21 +179,27 @@ nav {
 }
 
 .hero-title span {
-  background: linear-gradient(135deg, #fb79a6, #dd6cb8, #ad5deb);
-  background-size: 200%;
+  background: linear-gradient(-225deg, #fb79a6, #dd6cb8, #ad5deb);
+  background-size: 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient 8s ease-in-out infinite;
 }
 
 @keyframes gradient {
-  to {
-    background-position: 200%;
-  }
+  0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 .gradient {
-  background: linear-gradient(90deg, #fb79a6, #dd6cb8, #ad5deb, #b37bdd);
+  background: linear-gradient(-225deg, #fb79a6, #dd6cb8, #ad5deb, #b37bdd);
   background-size: 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -201,9 +207,15 @@ nav {
 }
 
 @keyframes gradient {
-  to {
-    background-position: 200%;
-  }
+  0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 /* @gradient{
   0%{
@@ -451,7 +463,9 @@ nav {
 }
 
 .logo-section {
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .logo-section img,
@@ -836,15 +850,21 @@ nav {
 
   .connection-title {
     font-size: 3rem;
-    background: linear-gradient(90deg, #fb79a6, #dd6cb8, #ad5deb, #b37bdd);
+    background: linear-gradient(-225deg, #fb79a6, #dd6cb8, #ad5deb, #b37bdd);
     background-size: 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient 8s ease-in-out infinite;
   }
   @keyframes gradient {
-    to {
-      background-position: 200%;
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
     }
   }
 
