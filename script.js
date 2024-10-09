@@ -96,6 +96,7 @@ if (window.innerWidth > 1200) {
   let base = 0; // Initial translateY value
   const scrollStep = 200; // Amount to move in each step (in pixels)
   let scrollInterval;
+  
 
   const scrollBoxes = () => {
     base += scrollStep; // Add -200px to each box's current translateY
@@ -117,17 +118,6 @@ if (window.innerWidth > 1200) {
     }
   };
 
-  box.forEach((box) => {
-    box.addEventListener("mouseenter", (box) => {
-      boxes.forEach((boxes) => {
-        if (boxes.title === box.target.innerText) {
-          document.querySelector(".half-box-title").innerText = boxes.title;
-          document.querySelector(".box-sub-title").innerText = boxes.subTitle;
-          document.querySelector(".description").innerText = boxes.description;
-        }
-      });
-    });
-  });
 
   const startScrolling = () => {
     scrollInterval = setInterval(scrollBoxes, 2000);
@@ -150,6 +140,18 @@ if (window.innerWidth > 1200) {
 menuService.addEventListener("mouseover", () => {
   isServiceOpen ? (leftText.style.opacity = 0) : (leftText.style.opacity = 1),
     (isServiceOpen = !isServiceOpen);
+});
+
+box.forEach((box) => {
+  box.addEventListener("mouseenter", (box) => {
+    boxes.forEach((boxes) => {
+      if (boxes.title === box.target.innerText) {
+        document.querySelector(".half-box-title").innerText = boxes.title;
+        document.querySelector(".box-sub-title").innerText = boxes.subTitle;
+        document.querySelector(".description").innerText = boxes.description;
+      }
+    });
+  });
 });
 
 handberger.addEventListener(

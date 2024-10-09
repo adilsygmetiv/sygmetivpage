@@ -23,6 +23,7 @@ html {
   font-family: var(--primary-font);
   background-color: black;
   color: white;
+  z-index: -9999;
 }
 
 h1,
@@ -35,6 +36,20 @@ p {
   margin: 0;
   padding: 0;
 }
+
+.bubbles {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  width: 80%;
+}
+
+.bubble1{
+  width: 100%;
+}
+
+
 
 /* general section  */
 .container {
@@ -60,6 +75,7 @@ nav {
   flex-direction: column;
   rotate: 180deg;
   gap: 5px;
+  z-index: 999;
 }
 
 .handberger {
@@ -155,6 +171,7 @@ nav {
   width: 100%;
   object-fit: cover;
   position: relative;
+  /* background-blend-mode: multiply; */
 }
 
 .hero-title {
@@ -424,6 +441,13 @@ nav {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
+  position: relative;
+}
+
+.bubble2{
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .logo-section {
@@ -872,5 +896,9 @@ nav {
   .link-wrapper a {
     color: var(--secondary-text);
     text-decoration: none;
+  }
+
+  .row2 > div {
+    transition: transform 0.5s ease-in-out; /* Smooth transition for 0.5 seconds */
   }
 }
